@@ -1,12 +1,14 @@
 from django.http import HttpResponse
-
+from django.shortcuts import render
 
 def blogs(request):
-    return HttpResponse("домашня сторінка сайту. Він міститиме список блогів, доступних на сайті django")
+    return render(request, 'blogs.html')
+def main(request):
+    return render(request, 'base.html')
 
 
-def post(request, slug):
-    return HttpResponse(f"детальний перегляд окремої публікації в блозі. Публікація під ім'ям {slug}")
+def post(request):
+    return render(request, 'post.html')
 
 
 def about(request):
@@ -14,7 +16,7 @@ def about(request):
 
 
 def create(request):
-    return HttpResponse("форма створення публікації.")
+    return render(request, 'create.html')
 
 
 def add_comment(request, slug):
@@ -39,11 +41,11 @@ def change_password(request):
 
 
 def register(request):
-    return HttpResponse("Сторінка з формою для реєстрації нового користувача.")
+    return render(request, 'register.html')
 
 
 def login(request):
-    return HttpResponse("Сторінка з формою для логіна.")
+    return render(request, 'login.html')
 
 
 def logout(request):
