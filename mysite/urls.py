@@ -4,19 +4,19 @@ from myapp.views import blogs, post, about, create, add_comment, update, delete,
 
 
 urlpatterns = [
-    path("", blogs),
-    path('blogs/', blogs),
+    path("", blogs, name='blogs'),
+    path('blogs/', blogs, name='blogs'),
     path("about/", about),
     path("<slug:slug>/comment/", add_comment),
-    path("create/", create),
+    path("create/", create, name='create'),
     path("<slug:slug>/update/", update),
     path("<slug:slug>/delete/", delete),
     path("profile/<str:username>/", profile),
     path("change_password/", change_password),
-    path('register/', register),
-    path('login/', login),
+    path('register/', register, name='register'),
+    path('login/', login, name='login'),
     path('logout/', logout),
-    path("<slug:slug>/", post)
+    path("post/", post, name='post')
 
 
 ]
