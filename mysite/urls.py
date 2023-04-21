@@ -1,7 +1,7 @@
 
 from django.urls import path
 from myapp.views import blogs, post, about, create, add_comment, update, delete, profile, change_password, register, login, logout
-
+from django.contrib import admin
 
 urlpatterns = [
     path("", blogs, name='blogs'),
@@ -16,7 +16,6 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('login/', login, name='login'),
     path('logout/', logout),
-    path("post/", post, name='post')
-
-
+    path("post/", post, name='post'),
+    path('admin/', admin.site.urls)
 ]
