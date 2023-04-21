@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 class Topic(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField(null=True, blank=True)
-    users= models.ManyToManyField(User)
+    users = models.ManyToManyField(User)
 
     def __str__(self):
         return self.title
@@ -19,7 +19,7 @@ class BlogPost(models.Model):
     created_at = models.DateField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    topics= models.ManyToManyField(Topic)
+    topics = models.ManyToManyField(Topic)
 
     def __str__(self):
         return self.title
