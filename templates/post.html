@@ -1,9 +1,18 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div style="padding: 20px; background-color: yellow">
-
-   тут пост
-
+<div>
+    {{post.title}}
+    <br>
+    {{post.content}}
+    <br>
+    <p>Comment</p>
+    <br>
+    {% for item in comments%}
+        {{item.content}}
+        <br>
+        {{item.author.username}}
+        <br>
+    {% endfor %}
 </div>
 {% endblock %}

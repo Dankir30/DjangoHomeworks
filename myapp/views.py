@@ -1,14 +1,19 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from .models import Topic, BlogPost, Comment
+from django.contrib.auth.models import User
 
 def blogs(request):
-    return render(request, 'blogs.html')
+    blogs = BlogPost.objects.all()
+    return render(request, 'blogs.html', {'blogs': blogs})
 def main(request):
     return render(request, 'base.html')
 
 
-def post(request):
-    return render(request, 'post.html')
+def post(request, slug):
+    post = BlogPost.objects.get(slug_url=slug)
+    comments = Comment.objects.filter(blog_post=post)
+    return render(request, 'post.html', {'post': post, 'comments': comments})
 
 
 def about(request):
