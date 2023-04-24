@@ -16,6 +16,6 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('login/', login, name='login'),
     path('logout/', logout),
-    path("post/", post, name='post'),
+    path('blog/<slug:slug>/', post, name='post'),
     path('admin/', admin.site.urls)
 ]
