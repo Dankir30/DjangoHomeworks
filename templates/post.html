@@ -10,7 +10,7 @@
     </div>
     <p>Comment</p>
     <br>
-    {% for item in comments%}
+    {% for item in post.comments.all%}
         {{item.content}}
         <br>
         {{item.author.username}}

@@ -12,8 +12,7 @@ def main(request):
 
 def post(request, slug):
     post = BlogPost.objects.get(slug_url=slug)
-    comments = post.comment_set.all()
-    return render(request, 'post.html', {'post': post, 'comments': comments})
+    return render(request, 'post.html', {'post': post})
 
 
 def about(request):
