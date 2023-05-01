@@ -8,13 +8,17 @@
         {{post.content}}
         </div>
     </div>
-    <p>Comment</p>
-    <br>
+    <p>Comments:</p>
     {% for item in post.comments.all%}
         {{item.content}}
         <br>
         {{item.author.username}}
         <br>
     {% endfor %}
+    <form method="POST" action="{%url 'post' post.slug_url%}">
+        {%csrf_token%}
+        {{form}}
+    <button type="submit" class="btn btn-danger">Save</button>
+    </form>
 </div>
 {% endblock %}

@@ -23,8 +23,7 @@ class BlogPost(models.Model):
     topics = models.ManyToManyField(Topic)
 
     def save(self, *args, **kwargs):
-        if not self.id:
-            self.slug_url = slugify(self.title)
+        self.slug_url = slugify(self.title)
         super().save(*args, **kwargs)
 
     def __str__(self):
@@ -39,7 +38,6 @@ class Comment(models.Model):
 
     def __str__(self):
         return f'comment by {self.author.username}'
-
 
 # user_dima = User.objects.get(id=2)
 # user_me = User.objects.get(id=1)
@@ -78,4 +76,3 @@ class Comment(models.Model):
 # post2 = BlogPost(title='Football is sucks', content='Its true, football is sucks', author=User.objects.get(id=1))
 # post2.save()
 # post2.topics.add(Topic.objects.all()[1])
-
