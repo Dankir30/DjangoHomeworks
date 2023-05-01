@@ -1,20 +1,23 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div>
+<div class="container">
     <div class="card">
         <h5 class="card-title d-flex justify-content-center">{{post.title}}</h5>
         <div class="card-body">
-        {{post.content}}
+            {{post.content}}
         </div>
     </div>
-    <p>Comment</p>
-    <br>
-    {% for item in post.comments.all%}
-        {{item.content}}
+        <p>Comments:</p>
+        {% for item in post.comments.all%}
+        {{item.content}} by {{item.author.username}}
         <br>
-        {{item.author.username}}
-        <br>
-    {% endfor %}
+        {% endfor %}
+        <form method="POST" action="{%url 'add_comment' post.slug_url%}">
+            {%csrf_token%}
+            {{form}}
+            <button type="submit" class="btn btn-danger">Save</button>
+        </form>
+    </div>
 </div>
 {% endblock %}

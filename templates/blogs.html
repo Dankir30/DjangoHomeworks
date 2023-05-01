@@ -1,15 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div>
-    {% for item in blogs %}
-<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h5 class="card-title">{{item.title}}</h5>
-    <h6 class="card-subtitle mb-2 text-body-secondary">Blog # {{item.id}}</h6>
-    <a href="{% url 'post' item.slug_url%}" class="card-link">Enjoy it!</a>
-  </div>
+<div style="display: flex;
+  justify-content: center">
+    {% for topic in topics %}
+    <form method="GET" action="{%url 'blogs'%}">
+        <input type='hidden' aria-label="Search" name="topic_by_filter" value="{{topic}}">
+        <button type='submit' class="btn btn-danger mt-3 mb-3 ms-3" data-bs-toggle="collapse" aria-expanded="false"
+                aria-controls="collapseExample">
+            {{topic}}
+        </button>
+    </form>
+    {%endfor%}
 </div>
-    {% endfor %}
+<div class="container text-center">
+    <div class="row row-cols-3">
+        {% for item in blogs %}
+        <div class="col">
+            <div class="card mb-3 mx-auto " style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">{{item.title}}</h5>
+                    <h6 class="card-subtitle mb-2 text-body-secondary">Blog # {{item.id}}</h6>
+                    <a href="{% url 'post' item.slug_url%}" class="card-link">Enjoy it!</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
