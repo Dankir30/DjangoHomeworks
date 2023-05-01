@@ -24,21 +24,24 @@ def blogs(request):
 @login_required(login_url='/login/')
 def post(request, slug):
     post = BlogPost.objects.get(slug_url=slug)
+    form = NewCommentForm()
+    return render(request, 'post.html', {'post': post, 'form': form})
+
+
+def add_comment(request, slug):
     if request.method == 'POST':
         form = NewCommentForm(request.POST)
         if form.is_valid():
             content = request.POST.get('content')
-            blog_post = post
+            blog_post = BlogPost.objects.get(slug_url=slug)
             author = request.user
             new_comment = Comment(content=content,
                                   author=author,
                                   blog_post=blog_post)
             new_comment.save()
-            form = NewCommentForm()
-            return render(request, 'post.html', {'post': post, 'form': form})
+            return redirect('post', slug)
     else:
-        form = NewCommentForm()
-    return render(request, 'post.html', {'post': post, 'form': form})
+        return HttpResponseRedirect('/')
 
 
 def about(request):

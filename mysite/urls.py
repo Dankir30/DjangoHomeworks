@@ -1,13 +1,14 @@
 
 from django.urls import path
-from myapp.views import blogs, post, about, create, update, delete, profile, change_password, register,\
-    my_login, my_logout
+from myapp.views import blogs, post, about, create, update, delete, profile, change_password, register, \
+    my_login, my_logout, add_comment
 from django.contrib import admin
 
 urlpatterns = [
     path("", blogs, name='blogs'),
     path('blogs/', blogs, name='blogs'),
     path("about/", about),
+    path('<slug:slug>/comment/', add_comment, name='add_comment'),
     path("create/", create, name='create'),
     path("<slug:slug>/update/", update),
     path("<slug:slug>/delete/", delete),
